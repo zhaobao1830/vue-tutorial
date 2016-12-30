@@ -27,8 +27,9 @@
 import Sidebar from './components/Sidebar.vue'
 
 export default {
+   name: "app",
    components: {
-      'sidebar':Sidebar
+      Sidebar
    }
 }
 </script>

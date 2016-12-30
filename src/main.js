@@ -2,13 +2,16 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import VueResource from 'vue-resource'
-
-import 'bootstrap/dist/css/bootstrap.css'
+import store from './store'
 import App from './App'
 import Home from './components/Home'
-import store from './store'
 import TimeEntries from './components/TimeEntries'
+import LogTime from './components/LogTime.vue'
+import NotFound from './components/404'
+import VueResource from 'vue-resource'
+import 'bootstrap/dist/css/bootstrap.css'
+
+
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
@@ -27,8 +30,12 @@ const routes=[{
     children:[{
       path: 'log-time',
       //懒加载
-      component : resolve => require(['./components/LogTime.vue'],resolve)
+      component : LogTime
     }]
+  },
+  {
+    path : '*',
+    component : NotFound
   }
 ]
 
@@ -41,5 +48,5 @@ new Vue({
   el: '#app',
   router,
   store,
-  ...App,
+  ...App
 })
